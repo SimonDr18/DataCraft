@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../static/home.css">
-    <title>{{ title }}</title>
-  </head>
-  <body>
-    <h1>{{ title }}</h1>
-    <ul>
-      {% for x in names %}
-      <li>{{ x }}</li>
-      {% endfor %}
-    </ul>
-  </body>
-</html>
+{% extends "base.html" %}
+{% block main %}
+<ul>
+  {% for x in names %}
+  <li>{{ x }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../static/home.css">
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    <h1>{{ title }}</h1>
+    <ul>
+      {%for l in data %}
+      <ul>
+        <li><h4>{{l["title"]}}</h4></li>
+        <ul>
+          <li>{{l["author"]}}</li>
+          <li>{{l["price"]}}</li>
+        </ul>
+        <img src="../static/images/{{l['img']}}" alt="{{l['title']}}">
+      </ul>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
