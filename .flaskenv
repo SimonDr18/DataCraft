@@ -1,2 +1,2 @@
-FLASK_APP=tuto
-FLASK_ENV=developement
+FLASK_APP=alchemy
+FLASK_ENV=development
