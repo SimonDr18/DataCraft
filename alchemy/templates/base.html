@@ -1,5 +1,5 @@
 {% extends "bootstrap/base.html" %}
-{% block title %}{{ title }} {% endblock %}
+{% block title %} {{ title }} {% endblock %}
 {% block styles %}
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
@@ -20,7 +20,7 @@
       <ul class="nav navbar-nav">
         <li id="tab_home" ><a href="/">Home</a></li>
         <li id="tab_books"><a  href="/books">Livres</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li id="tab_authors"><a href="/authors">Author</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

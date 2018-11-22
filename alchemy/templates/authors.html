@@ -3,16 +3,17 @@
   <div id="main" class="container theme-showcase" role="main">
   </div>
   <h1>{{title}}</h1>
-  <div class="row">
-    {% for x in data %}
-      <a href="{{x.url}}">
-        <img  src="{{ url_for('static', filename='images/'+x.img) }}" alt="{{x.title}}"/>
-      </a>
-      <p>Test</p>
+  <div class="row"><ul>
+
+
+    {% for x in data %}<li>
+      <a href="/book/{{x.name}}">{{x.name}}</a>
+    </li>
     {% endfor %}
+      </ul>
   </div>
 {% endblock %}
 {% block js %}
 {{ super() }}
-tabcur="tab_books";
+tabcur="tab_authors";
 {% endblock %}

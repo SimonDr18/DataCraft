@@ -10,22 +10,30 @@ def home():
     data=get_books()
     )
 
-# @app.route("/books")
-# def books():
-#     return render_template(
-#     "books.html",
-#     title="Les livres sur Amazon",
-#     data=get_books()
-#     )
-#
-# @app.route("/author")
-# def author():
-#     pass
-#
-# @app.route("/book/<int:index>")
-# def book(index):
-#     return get_book(index)["title"]
-#
-# @app.route("/book/<string:name>")
-# def author(name):
-#     return get_books_for_author(name)
+@app.route("/books")
+def books():
+    return render_template(
+    "books.html",
+    title="Les livres sur Amazon",
+    data=get_books()
+    )
+
+@app.route("/authors")
+def authors():
+    return render_template(
+    "authors.html",
+    title="Les auteurs",
+    data=get_authors()
+    )
+
+@app.route("/book/<int:index>")
+def book(index):
+    return get_book(index).title
+
+@app.route("/book/<string:name>")
+def author(name):
+    return render_template(
+    "books.html",
+    title="Les livres de "+name,
+    data=get_books_for_author(name)
+    )
