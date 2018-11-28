@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block main %}
 <div id="main" class="container theme-showcase" role="main">
-<h1>Edit author: {{ author.name }}</h1>
-<form role="form" method="POST" action="{{ url_for('save_author') }}">
+<h1>Ajouter un auteur a la base de donnée</h1>
+<form role="form" method="POST" action="{{ url_for('add_author_POST') }}">
   {{ form.hidden_tag() }}
   <div class=
     {% if form.name.errors %}
@@ -25,5 +25,5 @@
 {% endblock %}
 {% block js %}
 {{ super() }}
-tabcur="tab_edit";
+tabcur="tab_add";
 {% endblock %}
