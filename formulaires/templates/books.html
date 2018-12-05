@@ -5,10 +5,11 @@
   <h1>{{title}}</h1>
   <div class="row">
     {% for x in data %}
-      <a href="{{x.url}}">
+      <a href="/book/{{x.id}}">
         <img  src="{{ url_for('static', filename='images/'+x.img) }}" alt="{{x.title}}"/>
+        <p>{{x.title}}</p>
+        <p>{{x.price}}0€</p>
       </a>
-      <p>Test</p>
     {% endfor %}
   </div>
 {% endblock %}

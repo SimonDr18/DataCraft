@@ -21,8 +21,15 @@
         <li id="tab_home" ><a href="/">Home</a></li>
         <li id="tab_books"><a  href="/books">Livres</a></li>
         <li id="tab_authors"><a href="/authors">Author</a></li>
-        <li id="tab_edit"><a href="/edit/author/">Edition d'auteurs</a></li>
         <li id="tab_add"><a href="/add/author/">Ajout d'auteur</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_authenticated %}
+        <li><a>{{ current_user.username }}</a></li>
+        <li><a href="{{ url_for('logout') }}"><span class ="glyphicon glyphicon-log-out" title="Logout"></span></a></li>
+        {% else %}
+        <li><a href="/login" role="button">Se connecter</a></li>
+        {% endif %}
       </ul>
     </div><!--/.nav-collapse -->
   </div>

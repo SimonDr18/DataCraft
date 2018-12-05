@@ -44,3 +44,9 @@ def get_authors():
 
 def get_author(id):
     return Author.query.get(id)
+
+from .app import login_manager
+
+@login_manager.user_loader
+def get_user(user):
+    return User.query.get(user)

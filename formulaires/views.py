@@ -2,8 +2,12 @@ from .app import app
 from flask import render_template
 from .models import *
 from flask_wtf import FlaskForm
-from wtforms import StringField , HiddenField
+from wtforms import StringField , HiddenField, PasswordField
 from wtforms.validators import DataRequired
+from flask import url_for, redirect, request
+from .app import db
+from hashlib import sha256
+from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route("/")
 def home():
@@ -31,7 +35,13 @@ def authors():
 
 @app.route("/book/<int:index>")
 def book(index):
-    return get_book(index).title
+    b = get_book(index)
+    return render_template(
+    "book.html",
+    title="Le livre de "+b.title,
+    data=b,
+    login=current_user.is_authenticated
+    )
 
 @app.route("/author/<int:id>")
 def author(id):
@@ -47,6 +57,7 @@ class AuthorForm(FlaskForm):
     name = StringField('Nom', validators=[DataRequired()])
 
 @app.route("/edit/author/<int:id>")
+@login_required
 def edit_author(id):
     a = get_author(id)
     f = AuthorForm(id = a.id, name=a.name)
@@ -55,10 +66,8 @@ def edit_author(id):
     author=a, form=f
     )
 
-from flask import url_for, redirect
-from .app import db
-
 @app.route("/save/author", methods=("POST",))
+@login_required
 def save_author():
     a = None
     f = AuthorForm()
@@ -74,6 +83,7 @@ def save_author():
     author=a, form=f)
 
 @app.route("/add/author/")
+@login_required
 def add_author():
     f = AuthorForm()
     return render_template(
@@ -82,6 +92,7 @@ def add_author():
     )
 
 @app.route("/create/author",methods=("POST",))
+@login_required
 def add_author_POST():
     n=None
     f=AuthorForm()
@@ -94,3 +105,37 @@ def add_author_POST():
     "add_author.html",
     form = f
     )
+
+class LoginForm(FlaskForm):
+    username= StringField('Username')
+    password = PasswordField("Password")
+    next = HiddenField()
+
+    def get_authenticated_user(self):
+        user = User.query.get(self.username.data)
+        if user is None:
+            return None
+        m = sha256()
+        m.update(self.password.data.encode())
+        passwd = m.hexdigest()
+        return user if passwd==user.password else None
+
+@app.route("/login/", methods=("GET","POST",))
+def login():
+    f = LoginForm()
+    if not f.is_submitted():
+        f.next.data=request.args.get("next")
+    elif f.validate_on_submit():
+        user = f.get_authenticated_user()
+        if user:
+            login_user(user)
+            return redirect(url_for("home"))
+    return render_template(
+    "login.html",
+    form=f
+    )
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
