@@ -2,7 +2,7 @@ from .app import app
 from flask import render_template
 from .models import *
 from flask_wtf import FlaskForm
-from wtforms import StringField , HiddenField, PasswordField
+from wtforms import StringField , HiddenField, PasswordField, SelectField
 from wtforms.validators import DataRequired
 from flask import url_for, redirect, request
 from .app import db
@@ -56,6 +56,13 @@ class AuthorForm(FlaskForm):
     id=HiddenField('id')
     name = StringField('Nom', validators=[DataRequired()])
 
+class BookForm(FlaskForm):
+    id = HiddenField('id')
+    title = StringField('Titre', validators=[DataRequired()])
+    price = StringField('Prix', validators=[DataRequired()])
+    url = StringField('URL du livre')
+    author = SelectField('Auteur', choices=[(1,"Group1"),(2,"Group2")], validators=[DataRequired()])
+
 @app.route("/edit/author/<int:id>")
 @login_required
 def edit_author(id):
@@ -91,6 +98,15 @@ def add_author():
     form=f
     )
 
+@app.route("/add/book")
+@login_required
+def add_book():
+    f=BookForm()
+    return render_template(
+    "add_book.html",
+    form = f
+    )
+
 @app.route("/create/author",methods=("POST",))
 @login_required
 def add_author_POST():
@@ -105,6 +121,30 @@ def add_author_POST():
     "add_author.html",
     form = f
     )
+
+@app.route("/create/book",methods=("POST",))
+def add_book_POST():
+    n=None
+    f=BookForm()
+    if f.validate_on_submit():
+        a = get_author(f.author.data)
+        n = Book(price = f.price.data,
+                title = f.title.data,
+                url = f.url.data,
+                img = f.img.data,
+                author_id = a.id)
+        db.session.add(n)
+        db.session.commit()
+        return redirect(url_for("author",id=n.id))
+    return render_template(
+    "add_book.html",
+    form = f
+    )
+
+def delete_author(id):
+    del_author(id)
+    return redirect(url_for("authors"))
+
 
 class LoginForm(FlaskForm):
     username= StringField('Username')

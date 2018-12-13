@@ -3,14 +3,17 @@
   <div id="main" class="container theme-showcase" role="main">
   </div>
   <h1>{{title}}</h1>
-  <div class="row"><ul>
-
-
-    {% for x in data %}<li>
-      <a href="/author/{{x.id}}">{{x.name}}</a>
-    </li>
-    {% endfor %}
-      </ul>
+  <div class="row">
+    <ul id="authors" class="list-group list-group-flush">
+      {% for x in data %}
+      <li class="list-group-item action">
+        <a href="/author/{{x.id}}">{{x.name}}</a>
+        {% if current_user.is_authenticated %}
+        <button type="button" name="delete" class="btn btn-danger btn-sm pull-right" onclick="delete_author({{x.id}})">X</button>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
   </div>
 {% endblock %}
 {% block js %}

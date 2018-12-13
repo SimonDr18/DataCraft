@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block main %}
+<div id="main" class="container theme-showcase" role="main">
+<h1>Ajouter un livre à la base de donnée</h1>
+<form role="form" method="POST" action="{{ url_for('add_book_POST') }}">
+  {{ form.hidden_tag() }}
+  <div class=
+    {% if form.title.errors %}
+    "form-group has-error"
+    {% else %}
+    "form-group"
+    {% endif %}
+    >
+    {{ form.title.label }} {{ form.title(size=50,class_="form-control") }}
+    {{ form.price.label }} {{ form.price(size=50,class_="form-control") }}
+    {{ form.url.label }} {{ form.url(size=50,class_="form-control") }}
+    {{ form.author.label }} {{ form.author(size=1,class_="form-control") }}
+  </div>
+  {% if form.title.errors %}
+  <ul class="list-group">
+    {% for e in form.title.errors %}
+    <li class="list-group-item list-group-item-danger">{{ e }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <input class="btn btn-default" type="submit" value="Enregistrer">
+</form>
+{% endblock %}
+{% block js %}
+{{ super() }}
+tabcur="tab_add";
+{% endblock %}

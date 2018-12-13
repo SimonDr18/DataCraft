@@ -45,6 +45,10 @@ def get_authors():
 def get_author(id):
     return Author.query.get(id)
 
+def del_author(id):
+    User.query.filter_by(id).delete()
+    db.commit()
+
 from .app import login_manager
 
 @login_manager.user_loader
