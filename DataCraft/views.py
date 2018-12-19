@@ -11,7 +11,19 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route("/")
 def home():
-    return 0
+    return render_template(
+    "home.html",
+    title = "DataCraft : Le Mini-Wiki",
+    data = get_blocks()
+)
+
+@app.route("/blocks")
+def blocks():
+    return render_template(
+    "blocks.html",
+    title = "DataCraft : Le Mini-Wiki",
+    data = get_blocks()
+)
 # @app.route("/books")
 # def books():
 #     return render_template(

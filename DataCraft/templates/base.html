@@ -1,0 +1,60 @@
+{% extends "bootstrap/base.html" %}
+{% block title %} {{ title }} {% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">DataCraft</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li id="tab_home" ><a href="/">Home</a></li>
+        <li id="tab_blocks"><a  href="/blocks">Blocs</a></li>
+        <li id="tab_home"><a href="/">Entités</a></li>
+        <li id="tab_home"><a href="/">Recettes</a></li>
+        <li id="tab_home"><a href="/">Ajouter un bloc</a></li>
+        <li id="tab_home"><a href="/">Ajouter une recette</a></li>
+        <li id="tab_home"><a href="/">Ajouter une entitée</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_authenticated %}
+        <li><a>{{ current_user.username }}</a></li>
+        <li><a href="{{ url_for('logout') }}"><span class ="glyphicon glyphicon-log-out" title="Logout"></span></a></li>
+        {% else %}
+        <li><a href="/login" role="button">Se connecter</a></li>
+        {% endif %}
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+{% endblock%}
+
+{% block content %}
+<div class="container theme-showcase" role="main" >
+  {% block main %}{% endblock %}
+</div>
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+<script>
+var tabcur = "tab_home";
+{% block js %}
+
+{% endblock %}
+$(function(){
+  $("#"+tabcur).addClass("active")
+})
+</script>
+{% endblock %}

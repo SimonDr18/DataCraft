@@ -20,7 +20,7 @@ def loaddb(filename1, filename2, filename3):
 
     # première passe: création de tous les Items
     items = {}
-    for b in data1: #Pour chaque items du YML
+    for b in data1: #Pour chaque items
         o = Item(idItem = b["type"],
                 meta = b["meta"],
                 nameItem = b['name'],
@@ -39,8 +39,9 @@ def loaddb(filename1, filename2, filename3):
     # troisieme passe: création de tous les recettes
     for b in data3:
         o = Recipe(idRecipe = b['id'],
-                   nameRecipe = b['name'], #Correspond au nom du block en question
-                   cases = b['cases']
+                   nameRecipe = b['name'],  #Correspond au nom du block en question
+                   cases = b['cases'],
+                   output = b['output']     #Correspond à au nombre d'item à la sortie
                    )
         db.session.add(o)
     db.session.commit()

@@ -1,18 +1,24 @@
 - id: 1
   name: Granite
   cases: "{ case1: 'Dirt', case2:'Dirt', case3:'Dirt', case4:'Dirt', case5:'Dirt', case6:'Dirt', case7:'Dirt', case8:'Dirt', case9:'Dirt'}"
+  output: 4
 - id: 2
   name: Grass
   cases: "{ case1: 'Dirt', case2:'Dirt', case3:'Dirt', case4:'Dirt', case5:'Dirt', case6:'Dirt', case7:'Dirt', case8:'Dirt', case9:'Dirt'}"
+  output: 64
 - id: 3
   name: Stone
   cases: "{ case1: 'Dirt', case2:'Dirt', case3:'Dirt', case4:'Dirt', case5:'Dirt', case6:'Dirt', case7:'Dirt', case8:'Dirt', case9:'Dirt'}"
+  output: 16
 - id: 4
   name: Diorite
   cases: "{ case1: 'Dirt', case2:'Dirt', case3:'Dirt', case4:'Dirt', case5:'Dirt', case6:'Dirt', case7:'Dirt', case8:'Dirt', case9:'Dirt'}"
+  output: 16
 - id: 5
   name: Dirt
   cases: "{ case1: 'Dirt', case2:'Dirt', case3:'Dirt', case4:'Dirt', case5:'Dirt', case6:'Dirt', case7:'Dirt', case8:'Dirt', case9:'Dirt'}"
+  output: 16
 - id: 6
   name: Granite
   cases: "{ case1: 'Dirt', case2:'Dirt', case3:'Dirt', case4:'Dirt', case5:'Dirt', case6:'Dirt', case7:'Dirt', case8:'Dirt', case9:'Dirt'}"
+  output: 16

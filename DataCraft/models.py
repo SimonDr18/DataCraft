@@ -29,15 +29,17 @@ class Recipe(db.Model):
     idRecipe = db.Column(db.Integer, primary_key=True)
     nameRecipe = db.Column(db.String(100))
     cases = db.Column(db.String(200))
+    output = db.Column(db.Integer)
 
     def __repr__(self):
         return "<%d Recipe (%s) %s>\n" % (self.id,self.cases,self.title)
 
-# def get_sample():
-#     return Book.query.limit(10).all
-#
-# def get_books(n=None):
-#     return get_sample(n) if n else Book.query.all()
+def get_block_sample():
+    return Item.query.limit(10).all()
+
+
+def get_blocks(n=None):
+    return get_sample(n) if n else Item.query.all()
 #
 # def get_book(index):
 #     return Book.query.get_or_404(index)
