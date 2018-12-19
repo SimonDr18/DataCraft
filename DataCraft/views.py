@@ -24,6 +24,14 @@ def blocks():
     title = "DataCraft : Le Mini-Wiki",
     data = get_blocks()
 )
+
+@app.route("/crafting")
+def crafting():
+    return render_template(
+"crafting.html",
+title = "Les Crafts disponibles"
+)
+
 # @app.route("/books")
 # def books():
 #     return render_template(

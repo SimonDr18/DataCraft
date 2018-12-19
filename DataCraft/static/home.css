@@ -1,5 +1,8 @@
 h1 {
 color: red;
+font-family: 'MinecraftiaRegular';
+font-weight: normal;
+font-style: normal;
 }
 
 div.sample{
@@ -9,3 +12,11 @@ div.sample{
 #main{
 margin-top: 5em;
 }
+
+/*
+Example for minecraft font 16*16 .
+p {
+   font-family: 'MinecraftiaRegular';
+   font-weight: normal;
+   font-style: normal;
+} */

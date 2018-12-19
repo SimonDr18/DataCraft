@@ -1,0 +1,54 @@
+
+
+{% extends "base.html" %}
+{% block main %}
+  <div id="main" class="container theme-showcase" role="main"></div>
+  <h1>{{ title }}</h1>
+
+  <div id='grid'>
+    <div class='grid-element'>
+      <img class ="displayed" src='' />
+    </div>
+
+    <div class='grid-element'>
+      <img class ="displayed" src='' />
+    </div>
+
+    <div class='grid-element'>
+      <img class ="displayed" src='' />
+    </div>
+
+    <div class='grid-element'>
+      <img class ="displayed" src='' />
+    </div>
+
+    <div class='grid-element'>
+      <img class ="displayed" src='' />
+    </div>
+
+    <div class='grid-element'>
+      <img class ="displayed" src='' />
+    </div>
+
+
+    <div class='grid-element'>
+      <img class ="displayed" src='' />
+    </div>
+
+    <div class='grid-element'>
+      <img class ="displayed" src='' />
+    </div>
+
+    <div class='grid-element'>
+      <img class ="displayed" src='' />
+    </div>
+  </div>
+  <div class='clear'></div>
+  <div class="arrow">
+    <i class="fa fa-arrow-right fa-3x"></i>
+  </div>
+{% endblock %}
+{% block js %}
+{{ super() }}
+tabcur="tab_crafting";
+{% endblock %}

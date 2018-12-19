@@ -1,0 +1,39 @@
+.crafting {
+  font-size: 20px;
+  font-weight: bold;
+  color: #404040;
+}
+
+.fa-arrow-right {
+    color: #8b8b8b;
+}
+
+.clear {
+  clear: both;
+}
+
+#grid {
+  width: 175px;
+}
+
+.grid-element {
+  background-color: #8b8b8b;
+  border-top: thick double #373737;
+  border-left: thick double #373737;
+  border-right: double #FFFFFF;
+  border-bottom: double #FFFFFF;
+  width: 36px;
+  height: 36px;
+  float: left;
+}
+
+.arrow {
+  margin: auto;
+  float: left;
+}
+
+img.displayed {
+  display: block;
+  margin: auto;
+  padding: 2px;
+}
