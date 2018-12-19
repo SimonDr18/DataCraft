@@ -57,11 +57,16 @@ class AuthorForm(FlaskForm):
     name = StringField('Nom', validators=[DataRequired()])
 
 class BookForm(FlaskForm):
+    la = []
+    listAuthor = get_authors()
+    for a in listAuthor:
+        la.append((a.id,a.name))
     id = HiddenField('id')
     title = StringField('Titre', validators=[DataRequired()])
     price = StringField('Prix', validators=[DataRequired()])
-    url = StringField('URL du livre')
-    author = SelectField('Auteur', choices=[(1,"Group1"),(2,"Group2")], validators=[DataRequired()])
+    url = StringField('URL du livre', validators=[DataRequired()])
+    img = StringField('IMG du livre', validators=[DataRequired()])
+    author = SelectField('Auteur', choices=la, validators=[DataRequired()])
 
 @app.route("/edit/author/<int:id>")
 @login_required
@@ -89,7 +94,7 @@ def save_author():
     "edit-author.html",
     author=a, form=f)
 
-@app.route("/add/author/")
+@app.route("/add/author")
 @login_required
 def add_author():
     f = AuthorForm()
@@ -137,7 +142,7 @@ def add_book_POST():
         db.session.commit()
         return redirect(url_for("author",id=n.id))
     return render_template(
-    "add_book.html",
+    "home.html",
     form = f
     )
 
@@ -160,7 +165,7 @@ class LoginForm(FlaskForm):
         passwd = m.hexdigest()
         return user if passwd==user.password else None
 
-@app.route("/login/", methods=("GET","POST",))
+@app.route("/login", methods=("GET","POST",))
 def login():
     f = LoginForm()
     if not f.is_submitted():
