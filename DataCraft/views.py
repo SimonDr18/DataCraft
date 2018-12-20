@@ -32,6 +32,14 @@ def crafting():
 title = "Les Crafts disponibles"
 )
 
+@app.route("/entities")
+def entities():
+    return render_template(
+    "entities.html",
+    title = "Les entitées du jeu",
+    data = get_entities()
+    )
+
 # @app.route("/books")
 # def books():
 #     return render_template(

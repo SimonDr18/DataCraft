@@ -34,12 +34,17 @@ class Recipe(db.Model):
     def __repr__(self):
         return "<%d Recipe (%s) %s>\n" % (self.id,self.cases,self.title)
 
-def get_block_sample():
-    return Item.query.limit(10).all()
+def get_block_sample(n):
+    return Item.query.limit(n).all()
 
+def get_block_sample(n):
+    return Entity.query.limit(n).all()
 
 def get_blocks(n=None):
-    return get_sample(n) if n else Item.query.all()
+    return get_block_sample(n) if n else Item.query.all()
+
+def get_entities(n=None):
+    return get_entity_sample(n) if n else Entity.query.all()
 #
 # def get_book(index):
 #     return Book.query.get_or_404(index)

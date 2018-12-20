@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block main %}
+  <div id="main" class="container theme-showcase" role="main">
+  </div>
+  <h1>{{ title }}</h1>
+  <div class="row">
+    <ul id="blocks" class="list-group list-group-flush">
+      {% for x in data %}
+      <li class="list-group-item action">
+        <img src="{{ url_for('static', filename='images/entities/'~ x.idEntity ~ '.png' ) }}"/>
+        <a href="/entity/{{ x.idItem }}">{{ x.nameEntity }}</a>
+        {% if current_user.is_authenticated %}
+        <button type="button" name="delete" class="btn btn-danger btn-sm pull-right" onclick="delete_author({{x.id}})">X</button>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
+{% block js %}
+{{ super() }}
+tabcur="tab_entities";
+{% endblock %}
