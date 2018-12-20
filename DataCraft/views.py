@@ -2,7 +2,7 @@ from .app import app
 from flask import render_template
 from .models import *
 from flask_wtf import FlaskForm
-from wtforms import StringField , HiddenField, PasswordField, SelectField
+from wtforms import StringField , HiddenField, PasswordField, SelectField, IntegerField
 from wtforms.validators import DataRequired
 from flask import url_for, redirect, request
 from .app import db
@@ -39,6 +39,35 @@ def entities():
     title = "Les entitées du jeu",
     data = get_entities()
     )
+
+class BlockForm():
+    blockid = IntegerField('ID du Block', validators=[DataRequired()])
+    meta = IntegerField('Meta-data du Block', validators=[DataRequired()])
+    name = StringField('Nom', validators=[DataRequired()])
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('uploaded_file',
+                                    filename=filename))
 
 # @app.route("/books")
 # def books():

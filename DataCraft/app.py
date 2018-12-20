@@ -1,9 +1,14 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
+from werkzeug.utils import secure_filename
+
 app=Flask(__name__)
+UPLOAD_FOLDER = '/path/to/the/uploads'
+ALLOWED_EXTENSIONS = set(['png'])
 app.config['BOOTSTRAP_SERVE_LOCAL'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY']="b58c673d-fc5c-4599-9d08-0027fb49e803"
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 Bootstrap(app)
 
