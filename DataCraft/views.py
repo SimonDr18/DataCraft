@@ -44,7 +44,18 @@ class BlockForm():
     blockid = IntegerField('ID du Block', validators=[DataRequired()])
     meta = IntegerField('Meta-data du Block', validators=[DataRequired()])
     name = StringField('Nom', validators=[DataRequired()])
+    text_type = StringField('Type', validators=[DataRequired()])
 
+class EntityForm():
+    entityid = IntegerField("ID de l'entité", validators=[DataRequired()])
+    name = StringField('Nom', validators=[DataRequired()])
+    text_type = StringField('Type', validators=[DataRequired()])
+
+class CraftingForm():
+    craftingid = IntegerField('ID du Block', validators=[DataRequired()])
+    name = StringField('Nom', validators=[DataRequired()])
+    cases = StringField('Cases (en format Dictionnaire)', validators=[DataRequired()])
+    output = IntegerField("Nombre d'items en sortie", validators=[DataRequired()])
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -68,6 +79,33 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('uploaded_file',
                                     filename=filename))
+
+@app.route("/add/block")
+def add_block():
+    f=BlockForm()
+    return render_template(
+    "add_block.html",
+    form = f
+    )
+#@app.route("/create/block")
+
+@app.route("/add/entity")
+def add_entity():
+    f=EntityForm()
+    return render_template(
+    "add_entity.html",
+    form = f
+    )
+#@app.route("/create/entity")
+
+@app.route("/add/crafting")
+def add_crafting():
+    f=CraftingForm()
+    return render_template(
+    "add_crafting.html",
+    form = f
+    )
+#@app.route("/create/crafting")
 
 # @app.route("/books")
 # def books():
