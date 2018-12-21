@@ -41,7 +41,7 @@ def entities():
     )
 
 class BlockForm():
-    blockid = IntegerField('ID du Block', validators=[DataRequired()])
+    blockid = StringField('ID du Block', validators=[DataRequired()])
     meta = IntegerField('Meta-data du Block', validators=[DataRequired()])
     name = StringField('Nom', validators=[DataRequired()])
     text_type = StringField('Type', validators=[DataRequired()])
@@ -87,7 +87,9 @@ def add_block():
     "add_block.html",
     form = f
     )
-#@app.route("/create/block")
+@app.route("/create/block")
+def add_block_POST():
+    abort(501)
 
 @app.route("/add/entity")
 def add_entity():
@@ -96,7 +98,9 @@ def add_entity():
     "add_entity.html",
     form = f
     )
-#@app.route("/create/entity")
+@app.route("/create/entity")
+def add_entity_POST():
+    abort(501)
 
 @app.route("/add/crafting")
 def add_crafting():
@@ -105,7 +109,9 @@ def add_crafting():
     "add_crafting.html",
     form = f
     )
-#@app.route("/create/crafting")
+@app.route("/create/crafting")
+def add_crafting_POST():
+    abort(501)
 
 # @app.route("/books")
 # def books():

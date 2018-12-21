@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block main %}
+<div id="main" class="container theme-showcase" role="main">
+<h1>Ajouter un entité a la base de donnée</h1>
+<form role="form" method="POST" action="{{ url_for('add_entity_POST') }}">
+  <div class=
+    {% if form.entityid.errors %}
+    "form-group has-error"
+    {% else %}
+    "form-group"
+    {% endif %}
+    >
+    {{ form.entityid.label }} {{ form.entityid(size=50,class_="form-control") }}
+    {{ form.name.label }} {{ form.name(size=50,class_="form-control") }}
+    {{ form.text_type.label }} {{ form.text_type(size=50,class_="form-control") }}
+  </div>
+  {% if form.entityid.errors %}
+  <ul class="list-group">
+    {% for e in form.entityid.errors %}
+    <li class="list-group-item list-group-item-danger">{{ e }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <input class="btn btn-default" type="submit" value="Enregistrer">
+</form>
+{% endblock %}
+{% block js %}
+{{ super() }}
+tabcur="tab_add_entity";
+{% endblock %}

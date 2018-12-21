@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block main %}
+<div id="main" class="container theme-showcase" role="main">
+<h1>Ajouter une recette de craft a la base de donnée</h1>
+<form role="form" method="POST" action="{{ url_for('add_crafting_POST') }}">
+  <div class=
+    {% if form.craftingid.errors %}
+    "form-group has-error"
+    {% else %}
+    "form-group"
+    {% endif %}
+    >
+    {{ form.craftingid.label }} {{ form.craftingid(size=50,class_="form-control") }}
+    {{ form.name.label }} {{ form.name(size=50,class_="form-control") }}
+    {{ form.cases.label }} {{ form.cases(size=50,class_="form-control") }}
+    {{ form.output.label }} {{ form.output(size=50,class_="form-control") }}
+  </div>
+  {% if form.craftingid.errors %}
+  <ul class="list-group">
+    {% for e in form.craftingid.errors %}
+    <li class="list-group-item list-group-item-danger">{{ e }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <input class="btn btn-default" type="submit" value="Enregistrer">
+</form>
+{% endblock %}
+{% block js %}
+{{ super() }}
+tabcur="tab_add_crafting";
+{% endblock %}

@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='crafting.css') }}">
 <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraftia" type="text/css"/>
+<link rel="shortcut icon" href="../static/images/entities/15.png" />
 {% endblock %}
 
 {% block navbar %}
@@ -26,9 +27,9 @@
         <li id="tab_blocks"><a  href="/blocks">Blocs</a></li>
         <li id="tab_entities"><a href="/entities">Entités</a></li>
         <li id="tab_crafting"><a href="/crafting">Recettes</a></li>
-        <li id="tab_home"><a href="/">Ajouter un bloc</a></li>
-        <li id="tab_home"><a href="/">Ajouter une recette</a></li>
-        <li id="tab_home"><a href="/">Ajouter une entitée</a></li>
+        <li id="tab_add_block"><a href="/add/block">Ajouter un bloc</a></li>
+        <li id="tab_add_entity"><a href="/add/entity">Ajouter une entitée</a></li>
+        <li id="tab_add_crafting"><a href="/add/crafting">Ajouter une recette</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated %}

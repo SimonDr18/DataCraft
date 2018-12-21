@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block main %}
+<div id="main" class="container theme-showcase" role="main">
+<h1>Ajouter un block a la base de donnée</h1>
+<form role="form" method="POST" action="{{ url_for('add_block_POST') }}">
+  <div class=
+    {% if form.blockid.errors %}
+    "form-group has-error"
+    {% else %}
+    "form-group"
+    {% endif %}
+    >
+    {{ form.blockid.label }} {{ form.blockid(size=50,class_="form-control") }}
+    {{ form.meta.label }} {{ form.meta(size=50,class_="form-control") }}
+    {{ form.name.label }} {{ form.name(size=50,class_="form-control") }}
+    {{ form.text_type.label }} {{ form.text_type(size=50,class_="form-control") }}
+  </div>
+  {% if form.blockid.errors %}
+  <ul class="list-group">
+    {% for e in form.blockid.errors %}
+    <li class="list-group-item list-group-item-danger">{{ e }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <input class="btn btn-default" type="submit" value="Enregistrer">
+</form>
+{% endblock %}
+{% block js %}
+{{ super() }}
+tabcur="tab_add_block";
+{% endblock %}
