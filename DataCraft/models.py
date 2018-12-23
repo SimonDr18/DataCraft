@@ -1,5 +1,7 @@
+from .app import login_manager
 from .app import db
 from flask_login import UserMixin
+
 
 class Item(db.Model):
     idItem = db.Column(db.Integer, primary_key=True)
@@ -8,7 +10,8 @@ class Item(db.Model):
     text_typeItem = db.Column(db.String(100))
 
     def __repr__(self):
-        return "<Block (%d) %s>\n" % (self.id,self.name)
+        return "<Block (%d) %s>\n" % (self.id, self.name)
+
 
 class Entity(db.Model):
     idEntity = db.Column(db.Integer, primary_key=True)
@@ -16,14 +19,16 @@ class Entity(db.Model):
     text_typeEntity = db.Column(db.String(100))
 
     def __repr__(self):
-        return "<Entity (%d) %s>\n" % (self.id,self.title)
+        return "<Entity (%d) %s>\n" % (self.id, self.title)
+
 
 class User(db.Model, UserMixin):
-    username = db.Column(db.String(50),primary_key=True)
+    username = db.Column(db.String(50), primary_key=True)
     password = db.Column(db.String(64))
 
     def get_id(self):
         return self.username
+
 
 class Recipe(db.Model):
     idRecipe = db.Column(db.Integer, primary_key=True)
@@ -32,16 +37,20 @@ class Recipe(db.Model):
     output = db.Column(db.Integer)
 
     def __repr__(self):
-        return "<%d Recipe (%s) %s>\n" % (self.id,self.cases,self.title)
+        return "<%d Recipe (%s) %s>\n" % (self.id, self.cases, self.title)
+
 
 def get_block_sample(n):
     return Item.query.limit(n).all()
 
+
 def get_block_sample(n):
     return Entity.query.limit(n).all()
 
+
 def get_blocks(n=None):
     return get_block_sample(n) if n else Item.query.all()
+
 
 def get_entities(n=None):
     return get_entity_sample(n) if n else Entity.query.all()
@@ -62,7 +71,6 @@ def get_entities(n=None):
 #     User.query.filter_by(id).delete()
 #     db.commit()
 
-from .app import login_manager
 
 @login_manager.user_loader
 def get_user(user):

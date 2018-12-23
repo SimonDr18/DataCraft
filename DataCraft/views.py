@@ -2,64 +2,75 @@ from .app import app
 from flask import render_template
 from .models import *
 from flask_wtf import FlaskForm
-from wtforms import StringField , HiddenField, PasswordField, SelectField, IntegerField
+from wtforms import StringField, HiddenField, PasswordField, SelectField
 from wtforms.validators import DataRequired
 from flask import url_for, redirect, request
 from .app import db
 from hashlib import sha256
 from flask_login import login_user, current_user, logout_user, login_required
 
+
 @app.route("/")
 def home():
     return render_template(
-    "home.html",
-    title = "DataCraft : Le Mini-Wiki",
-    data = get_blocks()
-)
+        "home.html",
+        title="DataCraft : Le Mini-Wiki",
+        data=get_blocks()
+    )
+
 
 @app.route("/blocks")
 def blocks():
     return render_template(
-    "blocks.html",
-    title = "DataCraft : Le Mini-Wiki",
-    data = get_blocks()
-)
+        "blocks.html",
+        title="DataCraft : Le Mini-Wiki",
+        data=get_blocks()
+    )
+
 
 @app.route("/crafting")
 def crafting():
     return render_template(
-"crafting.html",
-title = "Les Crafts disponibles"
-)
+        "crafting.html",
+        title="Les Crafts disponibles"
+    )
+
 
 @app.route("/entities")
 def entities():
     return render_template(
-    "entities.html",
-    title = "Les entitées du jeu",
-    data = get_entities()
+        "entities.html",
+        title="Les entitées du jeu",
+        data=get_entities()
     )
 
-class BlockForm():
-    blockid = StringField('ID du Block', validators=[DataRequired()])
-    meta = IntegerField('Meta-data du Block', validators=[DataRequired()])
+
+class BlockForm(FlaskForm):
+    idItem = StringField('ID du Block', validators=[DataRequired()])
+    meta = StringField('Meta-data du Block', validators=[DataRequired()])
     name = StringField('Nom', validators=[DataRequired()])
     text_type = StringField('Type', validators=[DataRequired()])
 
-class EntityForm():
-    entityid = IntegerField("ID de l'entité", validators=[DataRequired()])
+
+class EntityForm(FlaskForm):
+    entityid = StringField("ID de l'entité", validators=[DataRequired()])
     name = StringField('Nom', validators=[DataRequired()])
     text_type = StringField('Type', validators=[DataRequired()])
 
-class CraftingForm():
-    craftingid = IntegerField('ID du Block', validators=[DataRequired()])
+
+class CraftingForm(FlaskForm):
+    craftingid = StringField('ID du Block', validators=[DataRequired()])
     name = StringField('Nom', validators=[DataRequired()])
-    cases = StringField('Cases (en format Dictionnaire)', validators=[DataRequired()])
-    output = IntegerField("Nombre d'items en sortie", validators=[DataRequired()])
+    cases = StringField('Cases (en format Dictionnaire)',
+                        validators=[DataRequired()])
+    output = StringField("Nombre d'items en sortie",
+                         validators=[DataRequired()])
+
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
@@ -80,35 +91,44 @@ def upload_file():
             return redirect(url_for('uploaded_file',
                                     filename=filename))
 
+
 @app.route("/add/block")
 def add_block():
-    f=BlockForm()
+    f = BlockForm()
     return render_template(
-    "add_block.html",
-    form = f
+        "add_block.html",
+        form=f
     )
+
+
 @app.route("/create/block")
 def add_block_POST():
     abort(501)
 
+
 @app.route("/add/entity")
 def add_entity():
-    f=EntityForm()
+    f = EntityForm()
     return render_template(
-    "add_entity.html",
-    form = f
+        "add_entity.html",
+        form=f
     )
+
+
 @app.route("/create/entity")
 def add_entity_POST():
     abort(501)
 
+
 @app.route("/add/crafting")
 def add_crafting():
-    f=CraftingForm()
+    f = CraftingForm()
     return render_template(
-    "add_crafting.html",
-    form = f
+        "add_crafting.html",
+        form=f
     )
+
+
 @app.route("/create/crafting")
 def add_crafting_POST():
     abort(501)
@@ -248,7 +268,7 @@ def add_crafting_POST():
 
 
 class LoginForm(FlaskForm):
-    username= StringField('Username')
+    username = StringField('Username')
     password = PasswordField("Password")
     next = HiddenField()
 
@@ -259,22 +279,24 @@ class LoginForm(FlaskForm):
         m = sha256()
         m.update(self.password.data.encode())
         passwd = m.hexdigest()
-        return user if passwd==user.password else None
+        return user if passwd == user.password else None
 
-@app.route("/login", methods=("GET","POST",))
+
+@app.route("/login", methods=("GET", "POST",))
 def login():
     f = LoginForm()
     if not f.is_submitted():
-        f.next.data=request.args.get("next")
+        f.next.data = request.args.get("next")
     elif f.validate_on_submit():
         user = f.get_authenticated_user()
         if user:
             login_user(user)
             return redirect(url_for("home"))
     return render_template(
-    "login.html",
-    form=f
+        "login.html",
+        form=f
     )
+
 
 @app.route("/logout")
 def logout():
