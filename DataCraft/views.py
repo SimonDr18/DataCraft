@@ -46,19 +46,22 @@ def entities():
 
 
 class BlockForm(FlaskForm):
+    id = HiddenField('id')
     idItem = StringField('ID du Block', validators=[DataRequired()])
-    meta = StringField('Meta-data du Block', validators=[DataRequired()])
+    blockmeta = StringField('Meta-data du Block', validators=[DataRequired()])
     name = StringField('Nom', validators=[DataRequired()])
     text_type = StringField('Type', validators=[DataRequired()])
 
 
 class EntityForm(FlaskForm):
+    id = HiddenField('id')
     entityid = StringField("ID de l'entité", validators=[DataRequired()])
     name = StringField('Nom', validators=[DataRequired()])
     text_type = StringField('Type', validators=[DataRequired()])
 
 
 class CraftingForm(FlaskForm):
+    id = HiddenField('id')
     craftingid = StringField('ID du Block', validators=[DataRequired()])
     name = StringField('Nom', validators=[DataRequired()])
     cases = StringField('Cases (en format Dictionnaire)',
@@ -273,6 +276,7 @@ class LoginForm(FlaskForm):
     next = HiddenField()
 
     def get_authenticated_user(self):
+
         user = User.query.get(self.username.data)
         if user is None:
             return None

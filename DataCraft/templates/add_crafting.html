@@ -3,6 +3,7 @@
 <div id="main" class="container theme-showcase" role="main">
 <h1>Ajouter une recette de craft a la base de donnée</h1>
 <form role="form" method="POST" action="{{ url_for('add_crafting_POST') }}">
+  {{ form.hidden_tag() }}
   <div class=
     {% if form.craftingid.errors %}
     "form-group has-error"

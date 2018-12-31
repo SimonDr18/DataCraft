@@ -3,6 +3,7 @@
 <div id="main" class="container theme-showcase" role="main">
 <h1>Ajouter un entité a la base de donnée</h1>
 <form role="form" method="POST" action="{{ url_for('add_entity_POST') }}">
+  {{ form.hidden_tag() }}
   <div class=
     {% if form.entityid.errors %}
     "form-group has-error"
