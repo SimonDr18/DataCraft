@@ -2,7 +2,7 @@ from .app import app
 from flask import render_template
 from .models import *
 from flask_wtf import FlaskForm
-from wtforms import StringField, HiddenField, PasswordField, SelectField
+from wtforms import StringField, HiddenField, PasswordField, SelectField, IntegerField
 from wtforms.validators import DataRequired
 from flask import url_for, redirect, request
 from .app import db
@@ -47,7 +47,7 @@ def entities():
 
 class BlockForm(FlaskForm):
     id = HiddenField('id')
-    idItem = StringField('ID du Block', validators=[DataRequired()])
+    idItem = IntegerField('ID du Block', validators=[DataRequired()])
     blockmeta = StringField('Meta-data du Block', validators=[DataRequired()])
     name = StringField('Nom', validators=[DataRequired()])
     text_type = StringField('Type', validators=[DataRequired()])
@@ -104,9 +104,22 @@ def add_block():
     )
 
 
-@app.route("/create/block")
+@app.route("/create/block",methods=("POST",))
 def add_block_POST():
-    abort(501)
+    n=None
+    f=BlockForm()
+    if f.validate_on_submit():
+        n = Item(idItem = f.idItem.data,
+                 meta = f.blockmeta.data,
+                 nameItem = f.name.data,
+                 text_typeItem = f.text_type.data)
+        db.session.add(n)
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template(
+        "add_block.html",
+        form = f
+        )
 
 
 @app.route("/add/entity")
@@ -118,9 +131,21 @@ def add_entity():
     )
 
 
-@app.route("/create/entity")
+@app.route("/create/entity",methods=("POST",))
 def add_entity_POST():
-    abort(501)
+    n=None
+    f=BlockForm()
+    if f.validate_on_submit():
+        n = Item(idEntity = f.entityid.data,
+                 nameEntity = f.name.data,
+                 text_typeEntity = f.text_type.data)
+        db.session.add(n)
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template(
+        "add_entity.html",
+        form = f
+        )
 
 
 @app.route("/add/crafting")
@@ -132,9 +157,22 @@ def add_crafting():
     )
 
 
-@app.route("/create/crafting")
+@app.route("/create/crafting",methods=("POST",))
 def add_crafting_POST():
-    abort(501)
+    n=None
+    f=BlockForm()
+    if f.validate_on_submit():
+        n = Item(idRecipe = f.idItem.data,
+                 nameRecipe = f.name.data,
+                 cases = f.cases.data,
+                 output = f.output.data)
+        db.session.add(n)
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template(
+        "add_crafting.html",
+        form = f
+        )
 
 # @app.route("/books")
 # def books():
