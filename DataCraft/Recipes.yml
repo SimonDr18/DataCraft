@@ -1,24 +1,30 @@
 - id: 1
   name: Granite
-  cases: "{ case1: 'Dirt', case2:'Dirt', case3:'Dirt', case4:'Dirt', case5:'Dirt', case6:'Dirt', case7:'Dirt', case8:'Dirt', case9:'Dirt'}"
+  nameId: 1-1
+  cases: "{'1': ('Dirt','1-0'), '2': ('Dirt','1-0'), '3': ('Dirt','1-0'), '4': ('Dirt','1-0'), '5': ('Dirt','1-0'), '6': ('Dirt','1-0'), '7': ('Dirt','1-0'), '8': ('Dirt','1-0'), '9': ('Dirt','1-0')}"
   output: 4
 - id: 2
   name: Grass
-  cases: "{ case1: 'Dirt', case2:'Dirt', case3:'Dirt', case4:'Dirt', case5:'Dirt', case6:'Dirt', case7:'Dirt', case8:'Dirt', case9:'Dirt'}"
+  nameId: 2-0
+  cases: "{'1': ('Dirt','1-0'), '2': ('Dirt','1-0'), '3': ('Dirt','1-0'), '4': ('Dirt','1-0'), '5': ('Dirt','1-0'), '6': ('Dirt','1-0'), '7': ('Dirt','1-0'), '8': ('Dirt','1-0'), '9': ('Dirt','1-0')}"
   output: 64
 - id: 3
   name: Stone
-  cases: "{ case1: 'Dirt', case2:'Dirt', case3:'Dirt', case4:'Dirt', case5:'Dirt', case6:'Dirt', case7:'Dirt', case8:'Dirt', case9:'Dirt'}"
+  nameId: 1-0
+  cases: "{'1': ('Dirt','1-0'), '2': ('Dirt','1-0'), '3': ('Dirt','1-0'), '4': ('Dirt','1-0'), '5': ('Dirt','1-0'), '6': ('Dirt','1-0'), '7': ('Dirt','1-0'), '8': ('Dirt','1-0'), '9': ('Dirt','1-0')}"
   output: 16
 - id: 4
   name: Diorite
-  cases: "{ case1: 'Dirt', case2:'Dirt', case3:'Dirt', case4:'Dirt', case5:'Dirt', case6:'Dirt', case7:'Dirt', case8:'Dirt', case9:'Dirt'}"
+  nameId: 1-3
+  cases: "{'1': ('Dirt','1-0'), '2': ('Dirt','1-0'), '3': ('Dirt','1-0'), '4': ('Dirt','1-0'), '5': ('Dirt','1-0'), '6': ('Dirt','1-0'), '7': ('Dirt','1-0'), '8': ('Dirt','1-0'), '9': ('Dirt','1-0')}"
   output: 16
 - id: 5
   name: Dirt
-  cases: "{ case1: 'Dirt', case2:'Dirt', case3:'Dirt', case4:'Dirt', case5:'Dirt', case6:'Dirt', case7:'Dirt', case8:'Dirt', case9:'Dirt'}"
+  nameId: 3-0
+  cases: "{'1': ('Dirt','1-0'), '2': ('Dirt','1-0'), '3': ('Dirt','1-0'), '4': ('Dirt','1-0'), '5': ('Dirt','1-0'), '6': ('Dirt','1-0'), '7': ('Dirt','1-0'), '8': ('Dirt','1-0'), '9': ('Dirt','1-0')}"
   output: 16
 - id: 6
   name: Granite
-  cases: "{ case1: 'Dirt', case2:'Dirt', case3:'Dirt', case4:'Dirt', case5:'Dirt', case6:'Dirt', case7:'Dirt', case8:'Dirt', case9:'Dirt'}"
+  nameId: 1-1
+  cases: "{'1': ('Dirt','1-0'), '2': ('Dirt','1-0'), '3': ('Dirt','1-0'), '4': ('Dirt','1-0'), '5': ('Dirt','1-0'), '6': ('Dirt','1-0'), '7': ('Dirt','1-0'), '8': ('Dirt','1-0'), '9': ('Dirt','1-0')}"
   output: 16

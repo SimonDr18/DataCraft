@@ -42,6 +42,7 @@ def loaddb(filename1, filename2, filename3):
         o = Recipe(idRecipe=b['id'],
                    # Correspond au nom du block en question
                    nameRecipe=b['name'],
+                   nameId=b['nameId'],
                    cases=b['cases'],
                    # Correspond à au nombre d'item à la sortie
                    output=b['output']

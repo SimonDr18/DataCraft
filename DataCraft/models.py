@@ -21,6 +21,15 @@ class Entity(db.Model):
     def __repr__(self):
         return "<Entity (%d) %s>\n" % (self.id, self.title)
 
+class Recipe(db.Model):
+    idRecipe = db.Column(db.Integer, primary_key=True)
+    nameRecipe = db.Column(db.String(100))
+    nameId = db.Column(db.Integer)
+    cases = db.Column(db.String(200))
+    output = db.Column(db.Integer)
+
+    def __repr__(self):
+        return "<%d Recipe (%s) %s>\n" % (self.id, self.cases, self.title)
 
 class User(db.Model, UserMixin):
     username = db.Column(db.String(50), primary_key=True)
@@ -29,17 +38,6 @@ class User(db.Model, UserMixin):
     def get_id(self):
         return self.username
 
-
-class Recipe(db.Model):
-    idRecipe = db.Column(db.Integer, primary_key=True)
-    nameRecipe = db.Column(db.String(100))
-    cases = db.Column(db.String(200))
-    output = db.Column(db.Integer)
-
-    def __repr__(self):
-        return "<%d Recipe (%s) %s>\n" % (self.id, self.cases, self.title)
-
-
 def get_block_sample(n):
     return Item.query.limit(n).all()
 
@@ -47,6 +45,8 @@ def get_block_sample(n):
 def get_block_sample(n):
     return Entity.query.limit(n).all()
 
+def get_recipe_sample(n):
+    return Recipe.query.limit(n).all()
 
 def get_blocks(n=None):
     return get_block_sample(n) if n else Item.query.all()
@@ -54,6 +54,9 @@ def get_blocks(n=None):
 
 def get_entities(n=None):
     return get_entity_sample(n) if n else Entity.query.all()
+
+def get_recipes(n=None):
+    return get_recipe_sample(n) if n else Recipe.query.all()
 #
 # def get_book(index):
 #     return Book.query.get_or_404(index)

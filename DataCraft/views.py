@@ -8,6 +8,7 @@ from flask import url_for, redirect, request
 from .app import db
 from hashlib import sha256
 from flask_login import login_user, current_user, logout_user, login_required
+import ast
 
 
 @app.route("/")
@@ -30,9 +31,14 @@ def blocks():
 
 @app.route("/crafting")
 def crafting():
+    dico = []
+    for i in get_recipes(): #La requete retourne une liste de recipe
+        dico.append(ast.literal_eval(i.cases)) #On transforme la string 'cases' en dictionnaire utilisable
     return render_template(
         "crafting.html",
-        title="Les Crafts disponibles"
+        title="Les Crafts disponibles",
+        data = get_recipes(),
+        dico = dico
     )
 
 

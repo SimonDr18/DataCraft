@@ -2,52 +2,48 @@
 {% block main %}
   <div id="main" class="container theme-showcase" role="main"></div>
   <h1>{{ title }}</h1>
+  {% set i = 0 %}
+  <div class="grid">
 
+  {% for x in data %}
   <div class='grid-container'>
     <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" title="Pierre" />
-    </div>
-
-    <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('1')[1] ~ '.png' ) }}" title="{{dico[i].get('1')[0]}}" />
     </div>
     <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('2')[1] ~ '.png' ) }}" title="{{dico[i].get('2')[0]}}" />
     </div>
-
     <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('3')[1] ~ '.png' ) }}" title="{{dico[i].get('3')[0]}}" />
     </div>
-
     <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('4')[1] ~ '.png' ) }}" title="{{dico[i].get('4')[0]}}" />
     </div>
-
     <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('5')[1] ~ '.png' ) }}" title="{{dico[i].get('5')[0]}}" />
     </div>
-
-
     <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('6')[1] ~ '.png' ) }}" title="{{dico[i].get('6')[0]}}" />
     </div>
-
     <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('7')[1] ~ '.png' ) }}" title="{{dico[i].get('7')[0]}}" />
     </div>
-
     <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('8')[1] ~ '.png' ) }}" title="{{dico[i].get('8')[0]}}" />
+    </div>
+    <div class='grid-item'>
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('9')[1] ~ '.png' ) }}" title="{{dico[i].get('9')[0]}}" />
+    </div>
+    <div class="arrow">
+      <i class="fa fa-arrow-right fa-3x"></i>
+    </div>
+    <div class='grid-item'>
+      <a href="{{ url_for('home') }}"><img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ x.nameId ~ '.png' ) }}" title="{{x.nameRecipe}}"/></a>
     </div>
   </div>
-  <div class='clear'></div>
-  <div class="arrow">
-    <i class="fa fa-arrow-right fa-3x"></i>
-  </div>
-  <div class='grid-item'>
-    <a href="{{ url_for('home') }}"><img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" title="Pierre"/></a>
-  </div>
-
+    {% set i = i+1 %}
+  {% endfor %}
+</div>
 
 {% endblock %}
 {% block js %}
