@@ -1,35 +1,30 @@
-.crafting {
-  font-size: 20px;
-  font-weight: bold;
-  color: #404040;
-}
-
 .fa-arrow-right {
     color: #8b8b8b;
 }
 
-.clear {
-  clear: both;
+.grid-container {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  padding: 1px;
 }
 
-.grid {
-  width: 175px;
-}
-
-.grid-element {
+.grid-item {
   background-color: #8b8b8b;
   border-top: thick double #373737;
   border-left: thick double #373737;
   border-right: double #FFFFFF;
   border-bottom: double #FFFFFF;
-  width: 36px;
-  height: 36px;
   float: left;
+  padding: 4px;
+  text-align: center;
+  margin: 0.5px;
 }
 
 .arrow {
   margin: auto;
   float: left;
+  margin-right: 9px;
+  margin-left: 9px;
 }
 
 img.displayed {

@@ -1,52 +1,54 @@
 {% extends "base.html" %}
 {% block main %}
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{{ url_for('static', filename='crafting.css') }}">
   <div id="main" class="container theme-showcase" role="main"></div>
   <h1>{{ title }}</h1>
 
-  <div class='grid'>
-    <div class='grid-element'>
-      <img class ="displayed" src='' />
+  <div class='grid-container'>
+    <div class='grid-item'>
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" title="Pierre" />
     </div>
 
-    <div class='grid-element'>
-      <img class ="displayed" src='' />
+    <div class='grid-item'>
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
+    </div>
+    <div class='grid-item'>
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
     </div>
 
-    <div class='grid-element'>
-      <img class ="displayed" src='' />
+    <div class='grid-item'>
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
     </div>
 
-    <div class='grid-element'>
-      <img class ="displayed" src='' />
+    <div class='grid-item'>
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
     </div>
 
-    <div class='grid-element'>
-      <img class ="displayed" src='' />
-    </div>
-
-    <div class='grid-element'>
-      <img class ="displayed" src='' />
+    <div class='grid-item'>
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
     </div>
 
 
-    <div class='grid-element'>
-      <img class ="displayed" src='' />
+    <div class='grid-item'>
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
     </div>
 
-    <div class='grid-element'>
-      <img class ="displayed" src='' />
+    <div class='grid-item'>
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
     </div>
 
-    <div class='grid-element'>
-      <img class ="displayed" src='' />
+    <div class='grid-item'>
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" />
     </div>
   </div>
   <div class='clear'></div>
   <div class="arrow">
     <i class="fa fa-arrow-right fa-3x"></i>
   </div>
+  <div class='grid-item'>
+    <a href="{{ url_for('home') }}"><img class ="displayed" src="{{ url_for('static', filename='images/items/1-0.png' ) }}" title="Pierre"/></a>
+  </div>
+
+
 {% endblock %}
 {% block js %}
 {{ super() }}

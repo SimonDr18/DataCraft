@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
 <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraftia" type="text/css" />
 <link rel="shortcut icon" href="../static/images/entities/15.png" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='crafting.css') }}">
 {% endblock %}
 
 {% block navbar %}
@@ -34,6 +36,16 @@
             <li><a href="/add/crafting">Ajouter une recette</a></li>
           </ul>
         </li>
+        {% if current_user.is_authenticated %}
+        <li id="tab_mod" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modification <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/mod/block">Modifier les item</a></li>
+            <li><a href="/mod/entity">Modifier les entitée</a></li>
+            <li><a href="/mod/crafting">Modifier les recette</a></li>
+          </ul>
+        </li>
+        {% endif %}
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

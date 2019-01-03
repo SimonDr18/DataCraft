@@ -104,22 +104,22 @@ def add_block():
     )
 
 
-@app.route("/create/block",methods=("POST",))
+@app.route("/create/block", methods=("POST",))
 def add_block_POST():
-    n=None
-    f=BlockForm()
+    n = None
+    f = BlockForm()
     if f.validate_on_submit():
-        n = Item(idItem = f.idItem.data,
-                 meta = f.blockmeta.data,
-                 nameItem = f.name.data,
-                 text_typeItem = f.text_type.data)
+        n = Item(idItem=f.idItem.data,
+                 meta=f.blockmeta.data,
+                 nameItem=f.name.data,
+                 text_typeItem=f.text_type.data)
         db.session.add(n)
         db.session.commit()
         return redirect(url_for("home"))
     return render_template(
         "add_block.html",
-        form = f
-        )
+        form=f
+    )
 
 
 @app.route("/add/entity")
@@ -131,21 +131,21 @@ def add_entity():
     )
 
 
-@app.route("/create/entity",methods=("POST",))
+@app.route("/create/entity", methods=("POST",))
 def add_entity_POST():
-    n=None
-    f=BlockForm()
+    n = None
+    f = BlockForm()
     if f.validate_on_submit():
-        n = Item(idEntity = f.entityid.data,
-                 nameEntity = f.name.data,
-                 text_typeEntity = f.text_type.data)
+        n = Item(idEntity=f.entityid.data,
+                 nameEntity=f.name.data,
+                 text_typeEntity=f.text_type.data)
         db.session.add(n)
         db.session.commit()
         return redirect(url_for("home"))
     return render_template(
         "add_entity.html",
-        form = f
-        )
+        form=f
+    )
 
 
 @app.route("/add/crafting")
@@ -157,22 +157,63 @@ def add_crafting():
     )
 
 
-@app.route("/create/crafting",methods=("POST",))
+@app.route("/create/crafting", methods=("POST",))
 def add_crafting_POST():
-    n=None
-    f=BlockForm()
+    n = None
+    f = BlockForm()
     if f.validate_on_submit():
-        n = Item(idRecipe = f.idItem.data,
-                 nameRecipe = f.name.data,
-                 cases = f.cases.data,
-                 output = f.output.data)
+        n = Item(idRecipe=f.idItem.data,
+                 nameRecipe=f.name.data,
+                 cases=f.cases.data,
+                 output=f.output.data)
         db.session.add(n)
         db.session.commit()
         return redirect(url_for("home"))
     return render_template(
         "add_crafting.html",
-        form = f
-        )
+        form=f
+    )
+
+
+@app.route("/mod/block")
+def del_block():
+    return render_template(
+        "mod_block.html",
+        title="Menu de gestion des block",
+        data=get_blocks()
+    )
+
+
+@app.route("/remove/block", methods=("POST",))
+def del_block_POST():
+    abort(501)
+
+
+@app.route("/mod/entity")
+def del_entity():
+    return render_template(
+        "mod_entity.html",
+        title="Menu de gestion des entitées",
+        data=get_entities()
+    )
+
+
+@app.route("/remove/entity", methods=("POST",))
+def del_entity_POST():
+    abort(501)
+
+
+@app.route("/mod/crafting")
+def del_crafting():
+    return render_template(
+        "mod_crafting.html",
+        title="Menu de gestion des recettes"
+    )
+
+
+@app.route("/remove/crafting", methods=("POST",))
+def del_crafting_POST():
+    abort(501)
 
 # @app.route("/books")
 # def books():
