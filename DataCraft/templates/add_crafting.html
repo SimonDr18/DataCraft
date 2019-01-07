@@ -13,7 +13,41 @@
     >
     {{ form.craftingid.label }} {{ form.craftingid(size=50,class_="form-control") }}
     {{ form.name.label }} {{ form.name(size=50,class_="form-control") }}
-    {{ form.cases.label }} {{ form.cases(size=50,class_="form-control") }}
+    <div class='grid-container'>
+      <div class='grid-item'>
+        {{ form.case1(size=1, class_="form_control") }}
+      </div>
+      <div class='grid-item'>
+        {{ form.case2(size=1, class_="form_control") }}
+      </div>
+      <div class='grid-item'>
+        {{ form.case3(size=1, class_="form_control") }}
+      </div>
+      <div class='grid-item'>
+        {{ form.case4(size=1, class_="form_control") }}
+      </div>
+      <div class='grid-item'>
+        {{ form.case5(size=1, class_="form_control") }}
+      </div>
+      <div class='grid-item'>
+        {{ form.case6(size=1, class_="form_control") }}
+      </div>
+      <div class='grid-item'>
+        {{ form.case7(size=1, class_="form_control") }}
+      </div>
+      <div class='grid-item'>
+        {{ form.case8(size=1, class_="form_control") }}
+      </div>
+      <div class='grid-item'>
+        {{ form.case9(size=1, class_="form_control") }}
+      </div>
+      <div class="arrow">
+        <i class="fa fa-arrow-right fa-3x"></i>
+      </div>
+      <div class='grid-item'>
+        {{ form.caseOutput(size=1, class_="form_control") }}
+      </div>
+    </div>
     {{ form.output.label }} {{ form.output(size=50,class_="form-control") }}
   </div>
   {% if form.craftingid.errors %}

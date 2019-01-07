@@ -70,8 +70,16 @@ class CraftingForm(FlaskForm):
     id = HiddenField('id')
     craftingid = StringField('ID du Block', validators=[DataRequired()])
     name = StringField('Nom', validators=[DataRequired()])
-    cases = StringField('Cases (en format Dictionnaire)',
-                        validators=[DataRequired()])
+    case1 = SelectField("case 1", choices = get_blocks_list() , validators=[DataRequired()])
+    case2 = SelectField("case 2", choices = get_blocks_list() , validators=[DataRequired()])
+    case3 = SelectField("case 3", choices = get_blocks_list() , validators=[DataRequired()])
+    case4 = SelectField("case 4", choices = get_blocks_list() , validators=[DataRequired()])
+    case5 = SelectField("case 5", choices = get_blocks_list() , validators=[DataRequired()])
+    case6 = SelectField("case 6", choices = get_blocks_list() , validators=[DataRequired()])
+    case7 = SelectField("case 7", choices = get_blocks_list() , validators=[DataRequired()])
+    case8 = SelectField("case 8", choices = get_blocks_list() , validators=[DataRequired()])
+    case9 = SelectField("case 9", choices = get_blocks_list() , validators=[DataRequired()])
+    caseOutput = SelectField("case output", choices = get_blocks_list() , validators=[DataRequired()])
     output = StringField("Nombre d'items en sortie",
                          validators=[DataRequired()])
 

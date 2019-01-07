@@ -51,6 +51,13 @@ def get_recipe_sample(n):
 def get_blocks(n=None):
     return get_block_sample(n) if n else Item.query.all()
 
+def get_blocks_list():
+    data = Item.query.all()
+    res=[]
+    for x in data:
+        res.append((str(x.idItem) + '-' + str(x.meta),x.nameItem))
+    return res
+
 
 def get_entities(n=None):
     return get_entity_sample(n) if n else Entity.query.all()
