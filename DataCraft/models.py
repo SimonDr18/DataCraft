@@ -10,7 +10,7 @@ class Item(db.Model):
     text_typeItem = db.Column(db.String(100))
 
     def __repr__(self):
-        return "<Block (%d) %s>\n" % (self.id, self.name)
+        return "<Block (%d) %s>\n" % (self.idItem, self.nameItem)
 
 
 class Entity(db.Model):
@@ -19,7 +19,7 @@ class Entity(db.Model):
     text_typeEntity = db.Column(db.String(100))
 
     def __repr__(self):
-        return "<Entity (%d) %s>\n" % (self.id, self.title)
+        return "<Entity (%d) %s>\n" % (self.idEntity, self.nameEntity)
 
 class Recipe(db.Model):
     idRecipe = db.Column(db.Integer, primary_key=True)
@@ -29,7 +29,7 @@ class Recipe(db.Model):
     output = db.Column(db.Integer)
 
     def __repr__(self):
-        return "<%d Recipe (%s) %s>\n" % (self.id, self.cases, self.title)
+        return "<%d Recipe (%s) %s>\n" % (self.idRecipe, self.cases, self.nameRecipe)
 
 class User(db.Model, UserMixin):
     username = db.Column(db.String(50), primary_key=True)
@@ -58,12 +58,23 @@ def get_blocks_list():
         res.append((str(x.idItem) + '-' + str(x.meta),x.nameItem))
     return res
 
+def get_block(id):
+    idI, m = id.split("-")
+    block = Item.query.filter(Item.idItem == idI, Item.meta == m).one()
+    return block.nameItem
 
 def get_entities(n=None):
     return get_entity_sample(n) if n else Entity.query.all()
 
 def get_recipes(n=None):
     return get_recipe_sample(n) if n else Recipe.query.all()
+
+def form_convert_dict(listCase):
+    res = {}
+    for x in range(9):
+        res[x+1]=(get_block(listCase[x]),listCase[x])
+    return str(res)
+
 #
 # def get_book(index):
 #     return Book.query.get_or_404(index)

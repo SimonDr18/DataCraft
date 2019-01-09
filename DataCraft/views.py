@@ -79,7 +79,6 @@ class CraftingForm(FlaskForm):
     case7 = SelectField("case 7", choices = get_blocks_list() , validators=[DataRequired()])
     case8 = SelectField("case 8", choices = get_blocks_list() , validators=[DataRequired()])
     case9 = SelectField("case 9", choices = get_blocks_list() , validators=[DataRequired()])
-    caseOutput = SelectField("case output", choices = get_blocks_list() , validators=[DataRequired()])
     output = StringField("Nombre d'items en sortie",
                          validators=[DataRequired()])
 
@@ -129,7 +128,7 @@ def add_block_POST():
                  text_typeItem=f.text_type.data)
         db.session.add(n)
         db.session.commit()
-        return redirect(url_for("home"))
+        return redirect(url_for("blocks"))
     return render_template(
         "add_block.html",
         form=f
@@ -148,14 +147,14 @@ def add_entity():
 @app.route("/create/entity", methods=("POST",))
 def add_entity_POST():
     n = None
-    f = BlockForm()
+    f = EntityForm()
     if f.validate_on_submit():
-        n = Item(idEntity=f.entityid.data,
-                 nameEntity=f.name.data,
-                 text_typeEntity=f.text_type.data)
+        n = Entity(idEntity=f.entityid.data,
+                    nameEntity=f.name.data,
+                    text_typeEntity=f.text_type.data)
         db.session.add(n)
         db.session.commit()
-        return redirect(url_for("home"))
+        return redirect(url_for("entities"))
     return render_template(
         "add_entity.html",
         form=f
@@ -174,15 +173,17 @@ def add_crafting():
 @app.route("/create/crafting", methods=("POST",))
 def add_crafting_POST():
     n = None
-    f = BlockForm()
+    f = CraftingForm()
     if f.validate_on_submit():
-        n = Item(idRecipe=f.idItem.data,
-                 nameRecipe=f.name.data,
-                 cases=f.cases.data,
+        list = [f.case1.data,f.case2.data,f.case3.data,f.case4.data,f.case5.data,f.case6.data,f.case7.data,f.case8.data,f.case9.data]
+        dico = form_convert_dict(list)
+        n = Recipe(nameRecipe=f.name.data,
+                 nameId=f.craftingid.data,
+                 cases=dico,
                  output=f.output.data)
         db.session.add(n)
         db.session.commit()
-        return redirect(url_for("home"))
+        return redirect(url_for("crafting"))
     return render_template(
         "add_crafting.html",
         form=f

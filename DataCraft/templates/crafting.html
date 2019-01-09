@@ -7,33 +7,11 @@
 
   {% for x in data %}
   <div class='grid-container'>
+    {% for x in range(9) %}
     <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('1')[1] ~ '.png' ) }}" title="{{dico[i].get('1')[0]}}" />
+      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get(x+1)[1] ~ '.png' ) }}" title="{{dico[i].get(x+1)[0]}}" />
     </div>
-    <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('2')[1] ~ '.png' ) }}" title="{{dico[i].get('2')[0]}}" />
-    </div>
-    <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('3')[1] ~ '.png' ) }}" title="{{dico[i].get('3')[0]}}" />
-    </div>
-    <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('4')[1] ~ '.png' ) }}" title="{{dico[i].get('4')[0]}}" />
-    </div>
-    <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('5')[1] ~ '.png' ) }}" title="{{dico[i].get('5')[0]}}" />
-    </div>
-    <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('6')[1] ~ '.png' ) }}" title="{{dico[i].get('6')[0]}}" />
-    </div>
-    <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('7')[1] ~ '.png' ) }}" title="{{dico[i].get('7')[0]}}" />
-    </div>
-    <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('8')[1] ~ '.png' ) }}" title="{{dico[i].get('8')[0]}}" />
-    </div>
-    <div class='grid-item'>
-      <img class ="displayed" src="{{ url_for('static', filename='images/items/' ~ dico[i].get('9')[1] ~ '.png' ) }}" title="{{dico[i].get('9')[0]}}" />
-    </div>
+    {% endfor %}
     <div class="arrow">
       <i class="fa fa-arrow-right fa-3x"></i>
     </div>
