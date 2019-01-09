@@ -1,8 +1,8 @@
 .fa-arrow-right {
-    color: #8b8b8b;
+  color: #8b8b8b;
 }
 
-.grid{
+.grid {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
 }

@@ -32,13 +32,14 @@ def blocks():
 @app.route("/crafting")
 def crafting():
     dico = []
-    for i in get_recipes(): #La requete retourne une liste de recipe
-        dico.append(ast.literal_eval(i.cases)) #On transforme la string 'cases' en dictionnaire utilisable
+    for i in get_recipes():  # La requete retourne une liste de recipe
+        # On transforme la string 'cases' en dictionnaire utilisable
+        dico.append(ast.literal_eval(i.cases))
     return render_template(
         "crafting.html",
         title="Les Crafts disponibles",
-        data = get_recipes(),
-        dico = dico
+        data=get_recipes(),
+        dico=dico
     )
 
 
@@ -70,15 +71,24 @@ class CraftingForm(FlaskForm):
     id = HiddenField('id')
     craftingid = StringField('ID du Block', validators=[DataRequired()])
     name = StringField('Nom', validators=[DataRequired()])
-    case1 = SelectField("case 1", choices = get_blocks_list() , validators=[DataRequired()])
-    case2 = SelectField("case 2", choices = get_blocks_list() , validators=[DataRequired()])
-    case3 = SelectField("case 3", choices = get_blocks_list() , validators=[DataRequired()])
-    case4 = SelectField("case 4", choices = get_blocks_list() , validators=[DataRequired()])
-    case5 = SelectField("case 5", choices = get_blocks_list() , validators=[DataRequired()])
-    case6 = SelectField("case 6", choices = get_blocks_list() , validators=[DataRequired()])
-    case7 = SelectField("case 7", choices = get_blocks_list() , validators=[DataRequired()])
-    case8 = SelectField("case 8", choices = get_blocks_list() , validators=[DataRequired()])
-    case9 = SelectField("case 9", choices = get_blocks_list() , validators=[DataRequired()])
+    case1 = SelectField("case 1", choices=get_blocks_list(),
+                        validators=[DataRequired()])
+    case2 = SelectField("case 2", choices=get_blocks_list(),
+                        validators=[DataRequired()])
+    case3 = SelectField("case 3", choices=get_blocks_list(),
+                        validators=[DataRequired()])
+    case4 = SelectField("case 4", choices=get_blocks_list(),
+                        validators=[DataRequired()])
+    case5 = SelectField("case 5", choices=get_blocks_list(),
+                        validators=[DataRequired()])
+    case6 = SelectField("case 6", choices=get_blocks_list(),
+                        validators=[DataRequired()])
+    case7 = SelectField("case 7", choices=get_blocks_list(),
+                        validators=[DataRequired()])
+    case8 = SelectField("case 8", choices=get_blocks_list(),
+                        validators=[DataRequired()])
+    case9 = SelectField("case 9", choices=get_blocks_list(),
+                        validators=[DataRequired()])
     output = StringField("Nombre d'items en sortie",
                          validators=[DataRequired()])
 
@@ -150,8 +160,8 @@ def add_entity_POST():
     f = EntityForm()
     if f.validate_on_submit():
         n = Entity(idEntity=f.entityid.data,
-                    nameEntity=f.name.data,
-                    text_typeEntity=f.text_type.data)
+                   nameEntity=f.name.data,
+                   text_typeEntity=f.text_type.data)
         db.session.add(n)
         db.session.commit()
         return redirect(url_for("entities"))
@@ -175,12 +185,13 @@ def add_crafting_POST():
     n = None
     f = CraftingForm()
     if f.validate_on_submit():
-        list = [f.case1.data,f.case2.data,f.case3.data,f.case4.data,f.case5.data,f.case6.data,f.case7.data,f.case8.data,f.case9.data]
+        list = [f.case1.data, f.case2.data, f.case3.data, f.case4.data,
+                f.case5.data, f.case6.data, f.case7.data, f.case8.data, f.case9.data]
         dico = form_convert_dict(list)
         n = Recipe(nameRecipe=f.name.data,
-                 nameId=f.craftingid.data,
-                 cases=dico,
-                 output=f.output.data)
+                   nameId=f.craftingid.data,
+                   cases=dico,
+                   output=f.output.data)
         db.session.add(n)
         db.session.commit()
         return redirect(url_for("crafting"))
