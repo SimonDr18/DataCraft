@@ -52,6 +52,13 @@ def entities():
     )
 
 
+@app.route("/block/<i>")
+def block(i):
+    return render_template(
+    "block.html",
+    data = get_block(i)
+    )
+
 class BlockForm(FlaskForm):
     id = HiddenField('id')
     idItem = IntegerField('ID du Block', validators=[DataRequired()])

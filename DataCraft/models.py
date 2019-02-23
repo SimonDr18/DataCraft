@@ -65,11 +65,15 @@ def get_blocks_list():
     return res
 
 
-def get_block(id):
+def get_block_name(id):
     idI, m = id.split("-")
     block = Item.query.filter(Item.idItem == idI, Item.meta == m).one()
     return block.nameItem
 
+def get_block(id):
+    idI, m = id.split("-")
+    block = Item.query.filter(Item.idItem == idI, Item.meta == m).one()
+    return block
 
 def get_entities(n=None):
     return get_entity_sample(n) if n else Entity.query.all()
@@ -82,7 +86,7 @@ def get_recipes(n=None):
 def form_convert_dict(listCase):
     res = {}
     for x in range(9):
-        res[x + 1] = (get_block(listCase[x]), listCase[x])
+        res[x + 1] = (get_block_name(listCase[x]), listCase[x])
     return str(res)
 
 #
