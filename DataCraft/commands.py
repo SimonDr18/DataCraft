@@ -77,6 +77,9 @@ def newuser(username, password):
 @click.argument('username')
 @click.argument('password')
 def changepsw(username, password):
+    """
+    Commande utilisée pour le changement de mot de passe. Entrez le username, puis son nouveau mot de passe.
+    """
     from .models import get_user
     from .models import User
     from hashlib import sha256
@@ -85,3 +88,17 @@ def changepsw(username, password):
     m.update(password.encode())
     user.password = m.hexdigest()
     db.session.commit()
+
+
+@app.cli.command()
+@click.argument('file')
+def convert(file):
+    """
+    Commande utilisée pour recupérer tous les noms d'un .xml avec le 'tag <name>'
+    """
+    f = open("name.txt", "w+")
+    import yaml
+    data = yaml.load(open(file))
+    for b in data :
+        f.write(b["name"]+"\n")
+    f.close()
