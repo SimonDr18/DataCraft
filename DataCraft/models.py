@@ -89,6 +89,18 @@ def form_convert_dict(listCase):
         res[x + 1] = (get_block_name(listCase[x]), listCase[x])
     return str(res)
 
+def getCraftFromBlock(id):
+    pass
+    #
+    #Récuperer via jointure entre craft et block les craft contenant ce block en recipe
+    #
+
+def getCraftForBlock(id):
+    pass
+    #
+    #Retourne les output qui correspondent au bloc
+    #
+
 #
 # def get_book(index):
 #     return Book.query.get_or_404(index)
