@@ -110,6 +110,7 @@ def screenGetter():
     Commande utilisant BeautifulSoup, module de parsing, afin de récupérer les images d'un site web automatiquement.
     """
     pass
+    
     #TODO Importer BeautifulSoup
     #
     #Recupérer tous les noms d'un fichier .txt et les mettre dans une liste.
