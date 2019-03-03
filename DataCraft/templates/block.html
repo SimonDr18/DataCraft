@@ -4,8 +4,8 @@
   </div>
   <h1>{{ data.nameItem }}</h1>
   <div class="content">
-    <p>HELLO {{ data.nameItem }}</p>
-    <img src="https://minecraft.gamepedia.com/File:Diorite.png" alt="test">
+    <p>{{ data.nameItem }}</p>
+    <img src="{{ url_for('static', filename='images/items-big/' ~ data.nameItem ~ '.png' ) }}" alt="{{ data.nameItem }}">
   </div>
 {% endblock %}
 {% block js %}
