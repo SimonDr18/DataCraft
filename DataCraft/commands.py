@@ -102,24 +102,3 @@ def convert(file):
     for b in data :
         f.write(b["name"]+"\n")
     f.close()
-
-
-@app.cli.command()
-def screenGetter():
-    """
-    Commande utilisant BeautifulSoup, module de parsing, afin de récupérer les images d'un site web automatiquement.
-    """
-    pass
-    
-    #TODO Importer BeautifulSoup
-    #
-    #Recupérer tous les noms d'un fichier .txt et les mettre dans une liste.
-    #while (list<=i):
-    #   try :
-    #      Recuperer l'url du site avec chaque name
-    #       Recupérer l'url d'image de l'objet en question dans une div en particulier
-    #       Télécharger l'url .png valide coupé sans la version ?
-    #   catch :
-    #       i non trouvé url invalide
-    #
-    #Sinon stocket l'url dans la base de donnée et la reutiliser par la suite ? Voir au niveaux des perfs
