@@ -8,6 +8,7 @@ class Item(db.Model):
     meta = db.Column(db.Integer, primary_key=True)
     nameItem = db.Column(db.String(100))
     text_typeItem = db.Column(db.String(100))
+    description = db.Column(db.String(1000))
 
     def __repr__(self):
         return "<Block (%d) %s>\n" % (self.idItem, self.nameItem)

@@ -25,7 +25,8 @@ def loaddb(filename1, filename2, filename3):
         o = Item(idItem=b["type"],
                  meta=b["meta"],
                  nameItem=b['name'],
-                 text_typeItem=b["text_type"]
+                 text_typeItem=b["text_type"],
+                 description=b["description"]
                  )
         db.session.add(o)
     db.session.commit()
