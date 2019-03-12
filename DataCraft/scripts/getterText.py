@@ -16,19 +16,22 @@ def screenGetter():
         # On fait une list d'url à chercher
         listUrl.append("minecraft.gamepedia.com/" + i)
 
-    #fileUrl = open("fileText.txt","w+")
-
+    fileText = open("fileText.txt","w+")
     for url in listUrl:
+        print("Running")
         r = requests.get("http://" + url)
         data = r.text
         soup = BeautifulSoup(data, "html5lib")
-        l = soup.findAll("i")[:2]
-        l.get_text()
-        if "<i><span" in l[0] :
-            print(l[1])
-        else :
-            print(l[0])
-        print()
+        l = soup.findAll("i")[:3]
+        try :
+            if "<i><span" in str(l[0]) :
+                fileText.write(l[1]+"\n")
+            else :
+                fileText.write(l[0]+"\n")
+        except:
+            fileText.write("Erreur\n")
+    fileText.close()
+    print("Done")
     return None
     #    if "minecraft" in textes[1]:
     #        fileUrl.write(textes[1]+"\n")
