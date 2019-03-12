@@ -24,7 +24,7 @@ def home():
 def blocks():
     return render_template(
         "blocks.html",
-        title="DataCraft : Le Mini-Wiki",
+        title="Les blocs du jeu",
         data=get_blocks()
     )
 
@@ -37,7 +37,7 @@ def crafting():
         dico.append(ast.literal_eval(i.cases))
     return render_template(
         "crafting.html",
-        title="Les Crafts disponibles",
+        title="Les crafts disponibles",
         data=get_recipes(),
         dico=dico
     )
@@ -56,6 +56,7 @@ def entities():
 def block(i):
     return render_template(
     "block.html",
+    title= get_block(i).nameItem,
     data = get_block(i)
     )
 
@@ -96,7 +97,7 @@ class CraftingForm(FlaskForm):
                         validators=[DataRequired()])
     case9 = SelectField("case 9", choices=get_blocks_list(),
                         validators=[DataRequired()])
-    output = StringField("Nombre d'items en sortie",
+    output = SelectField("Nombre d'items en sortie",choices=get_blocks_list(),
                          validators=[DataRequired()])
 
 
@@ -276,6 +277,19 @@ class SignInForm(FlaskForm):
         db.session.add(u)
         db.session.commit()
         return u
+
+class DeleteForm(FlaskForm):
+    id = HiddenField()
+    type = HiddenField()
+
+    def delete_from_database(self):
+        if self.type == "block":
+            pass
+        else if self.type == "entity":
+            pass
+        else:
+            pass
+
 
 @app.route("/login", methods=("GET", "POST",))
 def login():
