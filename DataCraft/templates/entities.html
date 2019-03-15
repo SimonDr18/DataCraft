@@ -4,15 +4,27 @@
   </div>
   <h1>{{ title }}</h1>
   <div class="row">
-    <ul id="blocks" class="list-group list-group-flush">
+    <input class="form-control" id="myInput" type="text" placeholder="Recherchez une entitée...">
+    <ul id="blocks" class="list-group">
       {% for x in data %}
-      <li class="list-group-item action">
+      <li class="list-group-item">
         <img src="{{ url_for('static', filename='images/entities/'~ x.idEntity ~ '.png' ) }}"/>
         <a href="/entity/{{ x.idItem }}">{{ x.nameEntity }}</a>
       </li>
       {% endfor %}
     </ul>
   </div>
+
+  <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#blocks li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 {% endblock %}
 {% block js %}
 {{ super() }}

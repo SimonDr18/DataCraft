@@ -211,16 +211,25 @@ def add_crafting_POST():
 
 @app.route("/mod/block")
 def del_block():
+    f = DeleteForm()
     return render_template(
         "mod_block.html",
         title="Menu de gestion des block",
-        data=get_blocks()
+        data=get_blocks(),
+        form=f
     )
 
 
 @app.route("/remove/block", methods=("POST",))
 def del_block_POST():
-    abort(501)
+    f = DeleteForm()
+    if f.validate_on_submit():
+        f.delete_from_database()
+        return redirect(url_for("blocks"))
+    return render_template(
+        "mod_block.html",
+        form=f
+    )
 
 
 @app.route("/mod/entity")
@@ -279,16 +288,17 @@ class SignInForm(FlaskForm):
         return u
 
 class DeleteForm(FlaskForm):
-    id = HiddenField()
-    type = HiddenField()
+    idof = HiddenField()
+    metadata = HiddenField()
+    typeof = HiddenField()
 
     def delete_from_database(self):
-        if self.type == "block":
-            pass
-        else if self.type == "entity":
-            pass
+        if self.typeof == "block":
+            Item.query.filter_by(Item.idItem == idof).filter_by(Item.meta == metadata).delete()
+        elif self.typeof == "entity":
+            Entity.query.filter_by(Entity.idEntity == idof).delete()
         else:
-            pass
+            Recipe.query.filter_by(Recipe.idRecipe == idof).delete()
 
 
 @app.route("/login", methods=("GET", "POST",))

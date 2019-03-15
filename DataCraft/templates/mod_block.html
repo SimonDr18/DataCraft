@@ -7,12 +7,12 @@
     <ul id="blocks" class="list-group list-group-flush">
       {% for x in data %}
       <li class="list-group-item action">
-        {% if current_user.is_authenticated %}
         <form action="{{ url_for('del_block_POST') }}" method="POST">
-          <input type="hidden" value="{{x.idItem}}">
+          {{ form.typeof(value="block") }}
+          {{ form.idof(value=x.idItem)}}
+          {{ form.metadata(value=x.idItem)}}
           <input class="btn btn-danger pull-right" type="submit" value="X">
         </form>
-        {% endif %}
         <img src="{{ url_for('static', filename='images/items/'~ x.idItem ~ '-' ~ x.meta ~ '.png' ) }}"/>
         <a href="/edit/{{x.idItem}}">{{x.nameItem}}</a>
       </li>
