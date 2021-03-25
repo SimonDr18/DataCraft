@@ -22,7 +22,7 @@ py==1.7.0
 PySocks==1.6.8
 pytest==4.0.1
 python-dotenv==0.9.1
-PyYAML==3.13
+PyYAML==5.4
 requests==2.20.1
 requests-oauthlib==1.0.0
 singledispatch==3.4.0.3
