@@ -18,7 +18,7 @@ nltk==3.4
 oauthlib==2.1.0
 pkg-resources==0.0.0
 pluggy==0.8.0
-py==1.7.0
+py==1.10.0
 PySocks==1.6.8
 pytest==4.0.1
 python-dotenv==0.9.1
